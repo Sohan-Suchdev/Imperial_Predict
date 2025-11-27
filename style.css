@@ -1,0 +1,105 @@
+/* --- CSS STYLES (The Skin) --- */
+:root { 
+    --imperial-blue: #000080; 
+    --light-gray: #f4f4f4; 
+    --success-green: #2ecc71; 
+}
+
+body { 
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+    background-color: var(--light-gray); 
+    margin: 0; 
+    padding: 20px; 
+    color: #333; 
+}
+
+.container { 
+    max-width: 800px; 
+    margin: 0 auto; 
+    padding-bottom: 50px; 
+}
+
+/* Sticky Header */
+.sticky-header {
+    background: var(--imperial-blue); 
+    color: white; 
+    padding: 20px;
+    border-radius: 12px; 
+    margin-bottom: 24px; 
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    position: sticky; 
+    top: 10px; 
+    z-index: 100;
+}
+
+.header-title { margin: 0; font-size: 1.5em; font-weight: 700; }
+.header-subtitle { margin: 5px 0 0 0; opacity: 0.9; font-size: 0.9em; }
+#year-average { font-weight: bold; font-size: 1.2em; color: #fff; }
+
+/* Module Cards */
+.module-card {
+    background: white; 
+    padding: 20px; 
+    border-radius: 12px;
+    margin-bottom: 16px; 
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease;
+}
+
+.module-header { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    margin-bottom: 15px; 
+    padding-bottom: 10px; 
+    border-bottom: 2px solid #f0f0f0; 
+}
+
+.module-title { font-weight: 700; font-size: 1.1em; color: var(--imperial-blue); }
+.module-grade { 
+    font-weight: bold; 
+    font-size: 1.1em; 
+    color: #555; 
+    background: #eee; 
+    padding: 4px 8px; 
+    border-radius: 6px; 
+}
+
+/* Task Rows */
+.task-row {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    padding: 10px 0; 
+    border-bottom: 1px solid #f9f9f9;
+}
+
+.task-info { display: flex; flex-direction: column; }
+.task-name { font-size: 0.95em; color: #444; }
+.task-meta { font-size: 0.8em; color: #888; margin-top: 2px; }
+
+.task-input-group { display: flex; align-items: center; gap: 10px; }
+
+.task-input { 
+    width: 70px; 
+    padding: 8px; 
+    border: 1px solid #ddd; 
+    border-radius: 6px; 
+    text-align: center; 
+    font-size: 1em; 
+    font-weight: bold; 
+    color: var(--imperial-blue);
+}
+
+.task-input:focus { 
+    outline: none; 
+    border-color: var(--imperial-blue); 
+    background: #f0f8ff; 
+}
+
+.task-percentage { font-size: 0.9em; color: #888; }
+
+/* Utility */
+.loading { text-align: center; padding: 40px; color: #666; font-style: italic; }
+.error { color: red; text-align: center; padding: 20px; background: white; border-radius: 8px; }
