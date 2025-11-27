@@ -53,7 +53,7 @@
         "credits": 20,
         "term": "Full Year",
         "tasks": [
-          { "name": "Haskell Interrim", "type": "test", "weight": 0.05, "maxScore": 20, "date": "Nov 10" },
+          { "name": "Haskell Interrim", "type": "test", "weight": 0.05, "maxScore": 25, "date": "Nov 10" },
           { "name": "Haskell Final", "type": "test", "weight": 0.25, "maxScore": 30, "date": "Jan 10" },
           { "name": "Ethics (Video Presentation)", "type": "project", "weight": 0.05, "maxScore": 100, "date": "Dec 15" },
           { "name": "Ethics (Individual Report)", "type": "project", "weight": 0.05, "maxScore": 100, "date": "Dec 15" },
@@ -95,7 +95,7 @@
         "credits": 10,
         "term": "Full Year",
         "tasks": [
-          { "name": "DM CW", "type": "cw", "weight": 0.05, "maxScore": 20, "date": "Nov 2" },
+          { "name": "DM Test", "type": "test", "weight": 0.05, "maxScore": 20, "date": "Nov 2" },
           { "name": "PL CW", "type": "cw", "weight": 0.05, "maxScore": 30, "date": "Nov 30" },
           { "name": "FOL CW", "type": "cw", "weight": 0.05, "maxScore": 30, "date": "Nov 30" },
           { "name": "Reasoning CW", "type": "cw", "weight": 0.05, "maxScore": 25, "date": "Feb 9" },

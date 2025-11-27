@@ -3,6 +3,8 @@
     --imperial-blue: #000080; 
     --light-gray: #f4f4f4; 
     --success-green: #2ecc71; 
+    --warning-yellow: #f1c40f;
+    --danger-red: #e74c3c;
 }
 
 body { 
@@ -36,26 +38,101 @@ body {
 .header-title { margin: 0; font-size: 1.5em; font-weight: 700; }
 .header-subtitle { margin: 5px 0 0 0; opacity: 0.9; font-size: 0.9em; }
 #year-average { font-weight: bold; font-size: 1.2em; color: #fff; }
+#degree-class-badge {
+    background: rgba(255,255,255,0.2);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.8em;
+    margin-left: 8px;
+    vertical-align: middle;
+}
+
+/* --- NEW: SUMMARY CARD (The "Predicted Mark" Area) --- */
+.summary-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    text-align: center;
+}
+
+.summary-title { margin: 0 0 15px 0; color: #555; font-size: 1.1em; }
+
+/* The Markband Table */
+.markband-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 Columns: 3rd, 2:2, 2:1, 1st */
+    gap: 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.markband-cell {
+    padding: 10px 5px;
+    background: #f9f9f9;
+    border-right: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+    font-size: 0.85em;
+    color: #666;
+    transition: background 0.3s, color 0.3s;
+}
+
+.markband-cell:last-child { border-right: none; }
+.markband-cell strong { font-size: 1.1em; margin-bottom: 4px; display: block; }
+
+/* Active State for Markband */
+.markband-cell.active {
+    background: var(--imperial-blue);
+    color: white;
+}
+.markband-cell.active span { color: rgba(255,255,255,0.8); }
+
 
 /* Module Cards */
 .module-card {
     background: white; 
-    padding: 20px; 
+    padding: 0; 
     border-radius: 12px;
     margin-bottom: 16px; 
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    transition: transform 0.2s ease;
+    overflow: hidden; 
 }
 
+/* Header (Clickable Trigger) */
 .module-header { 
     display: flex; 
     justify-content: space-between; 
     align-items: center; 
-    margin-bottom: 15px; 
-    padding-bottom: 10px; 
-    border-bottom: 2px solid #f0f0f0; 
+    padding: 20px;
+    background: white;
+    cursor: pointer;
+    transition: background 0.1s;
+    user-select: none; 
 }
 
+.module-header:hover { background: #f9f9f9; }
+
+.chevron {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-right: 2px solid #ccc;
+    border-bottom: 2px solid #ccc;
+    transform: rotate(45deg); 
+    transition: transform 0.2s ease;
+    margin-right: 15px;
+    margin-bottom: 3px;
+}
+
+.module-card.collapsed .chevron {
+    transform: rotate(-45deg);
+}
+
+.module-title-group { display: flex; align-items: center; }
 .module-title { font-weight: 700; font-size: 1.1em; color: var(--imperial-blue); }
 .module-grade { 
     font-weight: bold; 
@@ -66,12 +143,21 @@ body {
     border-radius: 6px; 
 }
 
-/* Task Rows */
+.module-tasks {
+    padding: 0 20px 20px 20px;
+    border-top: 1px solid #f0f0f0;
+    display: block;
+}
+
+.module-card.collapsed .module-tasks {
+    display: none;
+}
+
 .task-row {
-    display: flex; 
-    justify-content: space-between; 
+    display: grid; 
+    grid-template-columns: 1fr auto; 
     align-items: center;
-    padding: 10px 0; 
+    padding: 12px 0; 
     border-bottom: 1px solid #f9f9f9;
 }
 
@@ -79,11 +165,24 @@ body {
 .task-name { font-size: 0.95em; color: #444; }
 .task-meta { font-size: 0.8em; color: #888; margin-top: 2px; }
 
-.task-input-group { display: flex; align-items: center; gap: 10px; }
+.task-input-group { 
+    display: flex; 
+    align-items: center; 
+    gap: 15px; 
+    justify-content: flex-end;
+    width: 280px; 
+}
+
+.task-slider {
+    flex-grow: 1; 
+    accent-color: var(--imperial-blue);
+    cursor: pointer;
+    height: 4px;
+}
 
 .task-input { 
-    width: 70px; 
-    padding: 8px; 
+    width: 60px; 
+    padding: 6px; 
     border: 1px solid #ddd; 
     border-radius: 6px; 
     text-align: center; 
@@ -91,15 +190,21 @@ body {
     font-weight: bold; 
     color: var(--imperial-blue);
 }
+.task-input:focus { outline: none; border-color: var(--imperial-blue); background: #f0f8ff; }
 
-.task-input:focus { 
-    outline: none; 
-    border-color: var(--imperial-blue); 
-    background: #f0f8ff; 
+.task-percentage { 
+    font-size: 0.9em; 
+    color: #888; 
+    width: 40px; 
+    text-align: left;
 }
 
-.task-percentage { font-size: 0.9em; color: #888; }
+h2.term-header {
+    color: var(--imperial-blue);
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 5px;
+    margin-top: 30px;
+}
 
-/* Utility */
 .loading { text-align: center; padding: 40px; color: #666; font-style: italic; }
 .error { color: red; text-align: center; padding: 20px; background: white; border-radius: 8px; }
