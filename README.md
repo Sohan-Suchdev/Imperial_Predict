@@ -3,6 +3,8 @@ ImperialPredict is a grade calculator for Imperial College students. It lets you
 
 This is a personal project aimed at simplifying the grade tracking process, replacing manual spreadsheets with a dedicated tool.
 
+https://sohan-suchdev.github.io/Imperial_Predict/
+
 ## Features
 
 - Real-Time Calculation: instantly updates module and year averages as you input grades.
