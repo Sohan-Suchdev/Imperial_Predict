@@ -1,0 +1,102 @@
+{
+  "courseName": "Civil Engineering (MEng)",
+  "year1": {
+    "totalCredits": 60,
+    "modules": [
+      {
+        "id": "CIVE40001",
+        "name": "Professional Engineering Practice",
+        "credits": 7.5,
+        "term": "Full Year",
+        "tasks": [
+          { "name": "Coursework Portfolio", "type": "cw", "weight": 1.0, "maxScore": 100, "date": "Summer" }
+        ]
+      },
+      {
+        "id": "CIVE40002",
+        "name": "Civil Engineering Design 1",
+        "credits": 7.5,
+        "term": "Full Year",
+        "tasks": [
+          { "name": "Design Coursework", "type": "cw", "weight": 1.0, "maxScore": 100, "date": "Summer" }
+        ]
+      },
+      {
+        "id": "CIVE40003",
+        "name": "Mathematics 1",
+        "credits": 10,
+        "term": "Terms 1 & 2",
+        "tasks": [
+          { "name": "Coursework", "type": "cw", "weight": 0.10, "maxScore": 100, "date": "Spring" },
+          { "name": "Examination", "type": "test", "weight": 0.90, "maxScore": 100, "date": "June" }
+        ]
+      },
+      {
+        "id": "CIVE40004",
+        "name": "Computational Methods 1",
+        "credits": 5,
+        "term": "Terms 1 & 2",
+        "tasks": [
+          { "name": "Coursework", "type": "cw", "weight": 0.20, "maxScore": 100, "date": "Spring" },
+          { "name": "Examination", "type": "test", "weight": 0.80, "maxScore": 100, "date": "June" }
+        ]
+      },
+      {
+        "id": "CIVE40005",
+        "name": "Mechanics",
+        "credits": 5,
+        "term": "Terms 1 & 2",
+        "tasks": [
+          { "name": "Examination", "type": "test", "weight": 1.0, "maxScore": 100, "date": "June" }
+        ]
+      },
+      {
+        "id": "CIVE40006",
+        "name": "Structural Mechanics 1",
+        "credits": 5,
+        "term": "Terms 1 & 2",
+        "tasks": [
+          { "name": "Examination", "type": "test", "weight": 1.0, "maxScore": 100, "date": "June" }
+        ]
+      },
+      {
+        "id": "CIVE40007",
+        "name": "Materials",
+        "credits": 5,
+        "term": "Terms 1 & 2",
+        "tasks": [
+          { "name": "Examination", "type": "test", "weight": 1.0, "maxScore": 100, "date": "June" }
+        ]
+      },
+      {
+        "id": "CIVE40008",
+        "name": "Fluid Mechanics 1",
+        "credits": 5,
+        "term": "Terms 1 & 2",
+        "tasks": [
+          { "name": "Coursework", "type": "cw", "weight": 0.20, "maxScore": 100, "date": "Spring" },
+          { "name": "Examination", "type": "test", "weight": 0.80, "maxScore": 100, "date": "June" }
+        ]
+      },
+      {
+        "id": "CIVE40009",
+        "name": "Geotechnics",
+        "credits": 5,
+        "term": "Terms 1 & 2",
+        "tasks": [
+          { "name": "Coursework", "type": "cw", "weight": 0.20, "maxScore": 100, "date": "Spring" },
+          { "name": "Examination", "type": "test", "weight": 0.80, "maxScore": 100, "date": "June" }
+        ]
+      },
+      {
+        "id": "CIVE40010",
+        "name": "Energy and Environmental Engineering",
+        "credits": 5,
+        "term": "Terms 1 & 2",
+        "tasks": [
+          { "name": "Examination", "type": "test", "weight": 1.0, "maxScore": 100, "date": "June" }
+        ]
+      }
+    ]
+  }
+}

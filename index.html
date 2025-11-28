@@ -10,19 +10,53 @@
 <body>
 
     <div class="container">
-        <!-- Header -->
-        <div class="sticky-header">
-            <h1 class="header-title">ImperialPredict</h1>
-            <p class="header-subtitle">
-                <span id="course-name">Loading Course...</span> • 
-                Year Average: <span id="year-average">--%</span>
-            </p>
+        
+        <!-- === VIEW 1: THE HUB (Course Selection) === -->
+        <div id="hub-view">
+            <div style="display:flex; justify-content:flex-end;">
+                <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark Mode">🌙</button>
+            </div>
+            
+            <h1 class="hub-title">ImperialPredict</h1>
+            
+            <!-- Announcement Box -->
+            <div id="hub-announcement" class="announcement-box">
+                <div class="loading">Loading courses...</div>
+            </div>
+
+            <!-- Course List -->
+            <div id="hub-course-list">
+                <!-- JS will fill this with departments and buttons -->
+            </div>
         </div>
 
-        <!-- App Container -->
-        <div id="app">
-            <div class="loading">Loading module data...</div>
+
+        <!-- === VIEW 2: THE CALCULATOR (Modules) === -->
+        <!-- Hidden by default -->
+        <div id="calculator-view" style="display: none;">
+            
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+                <!-- Navigation -->
+                <button onclick="showHub()" class="back-btn">← Back to Courses</button>
+                <!-- Theme Toggle (Duplicate for easy access) -->
+                <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark Mode">🌙</button>
+            </div>
+
+            <!-- Sticky Header -->
+            <div class="sticky-header">
+                <h1 class="header-title">ImperialPredict</h1>
+                <p class="header-subtitle">
+                    <span id="course-name">Loading...</span> • 
+                    Year Average: <span id="year-average">--%</span>
+                </p>
+            </div>
+
+            <!-- App Container (The Cards) -->
+            <div id="app">
+                <!-- JS fills this when a course is selected -->
+            </div>
         </div>
+
     </div>
 
     <!-- Link to the external JavaScript file -->

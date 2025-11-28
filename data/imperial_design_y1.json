@@ -1,0 +1,92 @@
+{
+  "courseName": "Design Engineering (MEng)",
+  "year1": {
+    "totalCredits": 60,
+    "modules": [
+      {
+        "id": "DESE40002",
+        "name": "Design Engineering Principles",
+        "credits": 7.5,
+        "term": "Term 1",
+        "tasks": [
+          { "name": "Presentation", "type": "cw", "weight": 0.30, "maxScore": 100, "date": "06 Nov" },
+          { "name": "Summative Submission", "type": "cw", "weight": 0.70, "maxScore": 100, "date": "10 Dec" }
+        ]
+      },
+      {
+        "id": "DESE40007",
+        "name": "Computing 1",
+        "credits": 5,
+        "term": "Terms 2 & 3",
+        "tasks": [
+          { "name": "Submission Workflow", "type": "cw", "weight": 0.05, "maxScore": 100, "date": "29 Jan" },
+          { "name": "Oral Examination", "type": "test", "weight": 0.35, "maxScore": 100, "date": "12 Feb" },
+          { "name": "Coding Examination", "type": "test", "weight": 0.60, "maxScore": 100, "date": "Term 3" }
+        ]
+      },
+      {
+        "id": "DESE40001",
+        "name": "Engineering Mathematics",
+        "credits": 10,
+        "term": "Full Year",
+        "tasks": [
+          { "name": "Examination 1", "type": "test", "weight": 0.50, "maxScore": 100, "date": "Term 2" },
+          { "name": "Examination 2", "type": "test", "weight": 0.50, "maxScore": 100, "date": "Term 3" }
+        ]
+      },
+      {
+        "id": "DESE40003",
+        "name": "Materials and Manufacturing",
+        "credits": 10,
+        "term": "Terms 2 & 3",
+        "tasks": [
+          { "name": "CAD and Fabrication Task", "type": "cw", "weight": 0.25, "maxScore": 100, "date": "09 Feb" },
+          { "name": "REVENG Report", "type": "cw", "weight": 0.25, "maxScore": 100, "date": "19 Mar" },
+          { "name": "Materials Exam", "type": "test", "weight": 0.50, "maxScore": 100, "date": "Term 3" }
+        ]
+      },
+      {
+        "id": "DESE40004",
+        "name": "Human Centred Design Engineering",
+        "credits": 12.5,
+        "term": "Terms 2 & 3",
+        "tasks": [
+          { "name": "Discovery Report", "type": "cw", "weight": 0.60, "maxScore": 100, "date": "12 Mar" },
+          { "name": "Delivery Report", "type": "cw", "weight": 0.25, "maxScore": 100, "date": "04 Jun" },
+          { "name": "Final Oral Presentation", "type": "cw", "weight": 0.15, "maxScore": 100, "date": "08 Jun" }
+        ]
+      },
+      {
+        "id": "DESE40009",
+        "name": "Data Science",
+        "credits": 5,
+        "term": "Term 3",
+        "tasks": [
+          { "name": "In-class Assignment", "type": "test", "weight": 0.50, "maxScore": 100, "date": "20 May" },
+          { "name": "Technical Report (Group)", "type": "cw", "weight": 0.50, "maxScore": 100, "date": "22 Jun" }
+        ]
+      },
+      {
+        "id": "DESE40005",
+        "name": "Solid Mechanics 1",
+        "credits": 5,
+        "term": "Term 1 & 2",
+        "tasks": [
+          { "name": "Bouncer Challenge Report", "type": "cw", "weight": 0.30, "maxScore": 100, "date": "13 Nov" },
+          { "name": "Mechanics Exam", "type": "test", "weight": 0.70, "maxScore": 100, "date": "Term 2" }
+        ]
+      },
+      {
+        "id": "DESE40006",
+        "name": "Electronics 1",
+        "credits": 5,
+        "term": "Term 3",
+        "tasks": [
+          { "name": "Lab Oral", "type": "cw", "weight": 0.20, "maxScore": 100, "date": "28 May" },
+          { "name": "Group Project Demo", "type": "cw", "weight": 0.20, "maxScore": 100, "date": "18 Jun" },
+          { "name": "Written Exam", "type": "test", "weight": 0.60, "maxScore": 100, "date": "Term 3" }
+        ]
+      }
+    ]
+  }
+}

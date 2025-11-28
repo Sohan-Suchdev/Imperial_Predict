@@ -1,0 +1,49 @@
+{
+  "announcement": {
+    "title": "👋 Welcome to ImperialPredict",
+    "message": "Select your course below to start tracking your grades. Data is updated for the 2025/26 academic year.",
+    "footer": "Missing your course? Contact me on GitHub to add it."
+  },
+  "departments": [
+    {
+      "name": "Department of Computing",
+      "courses": [
+        { 
+          "id": "comp_y1", 
+          "name": "Computing Year 1", 
+          "file": "data/imperial_computing_y1.json" 
+        }
+      ]
+    },
+    {
+      "name": "Department of Civil Engineering",
+      "courses": [
+        { 
+          "id": "civil_y1", 
+          "name": "Civil Engineering Year 1", 
+          "file": "data/imperial_civil_y1.json" 
+        }
+      ]
+    },
+    {
+      "name": "Dyson School of Design Engineering",
+      "courses": [
+        { 
+          "id": "design_y1", 
+          "name": "Design Engineering Year 1", 
+          "file": "data/imperial_design_y1.json" 
+        }
+      ]
+    },
+    {
+      "name": "Electrical & Electronic Engineering",
+      "courses": [
+        { 
+          "id": "eee_y1", 
+          "name": "EEE Year 1", 
+          "file": "data/imperial_eee_y1.json" 
+        }
+      ]
+    }
+  ]
+}
