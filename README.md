@@ -20,9 +20,14 @@ https://sohan-suchdev.github.io/Imperial_Predict/
 Currently, the application supports the following:
 
 - Computing (BEng/MEng) - Year 1
+- EEE Year 1
+- Civil Enginerring Year 1
+- Design Enginerring Year 1
 
 ## Contributing and Contact
 
-I hope to expand this tool to support more years and other courses (Aeronautics, EEE, Mechanical Engineering, etc.).
+I hope to expand this tool to support more years and other courses (Aeronautics, Mechanical Engineering, Maths etc.).
 
 If you would like your course added, please contact me with a list of your modules, their ECTS credit values, and the breakdown of assignments/exams. I can update the system quickly with the correct data.
+
+Any feature suggestions to make the lives of students easier are welcome too.
