@@ -9,7 +9,7 @@
         "credits": 7.5,
         "term": "Full Year",
         "tasks": [
-          { "name": "Coursework Portfolio", "type": "cw", "weight": 1.0, "maxScore": 100, "date": "Summer" }
+          { "name": "Coursework Portfolio", "type": "cw", "weight": 1.0, "maxScore": 100 }
         ]
       },
       {
@@ -18,7 +18,7 @@
         "credits": 7.5,
         "term": "Full Year",
         "tasks": [
-          { "name": "Design Coursework", "type": "cw", "weight": 1.0, "maxScore": 100, "date": "Summer" }
+          { "name": "Design Coursework", "type": "cw", "weight": 1.0, "maxScore": 100 }
         ]
       },
       {
@@ -27,8 +27,8 @@
         "credits": 10,
         "term": "Terms 1 & 2",
         "tasks": [
-          { "name": "Coursework", "type": "cw", "weight": 0.10, "maxScore": 100, "date": "Spring" },
-          { "name": "Examination", "type": "test", "weight": 0.90, "maxScore": 100, "date": "June" }
+          { "name": "Coursework", "type": "cw", "weight": 0.10, "maxScore": 100 },
+          { "name": "Examination", "type": "test", "weight": 0.90, "maxScore": 100 }
         ]
       },
       {
@@ -37,8 +37,8 @@
         "credits": 5,
         "term": "Terms 1 & 2",
         "tasks": [
-          { "name": "Coursework", "type": "cw", "weight": 0.20, "maxScore": 100, "date": "Spring" },
-          { "name": "Examination", "type": "test", "weight": 0.80, "maxScore": 100, "date": "June" }
+          { "name": "Coursework", "type": "cw", "weight": 0.20, "maxScore": 100 },
+          { "name": "Examination", "type": "test", "weight": 0.80, "maxScore": 100 }
         ]
       },
       {
@@ -47,7 +47,7 @@
         "credits": 5,
         "term": "Terms 1 & 2",
         "tasks": [
-          { "name": "Examination", "type": "test", "weight": 1.0, "maxScore": 100, "date": "June" }
+          { "name": "Examination", "type": "test", "weight": 1.0, "maxScore": 100 }
         ]
       },
       {
@@ -56,7 +56,7 @@
         "credits": 5,
         "term": "Terms 1 & 2",
         "tasks": [
-          { "name": "Examination", "type": "test", "weight": 1.0, "maxScore": 100, "date": "June" }
+          { "name": "Examination", "type": "test", "weight": 1.0, "maxScore": 100 }
         ]
       },
       {
@@ -65,7 +65,7 @@
         "credits": 5,
         "term": "Terms 1 & 2",
         "tasks": [
-          { "name": "Examination", "type": "test", "weight": 1.0, "maxScore": 100, "date": "June" }
+          { "name": "Examination", "type": "test", "weight": 1.0, "maxScore": 100 }
         ]
       },
       {
@@ -74,8 +74,8 @@
         "credits": 5,
         "term": "Terms 1 & 2",
         "tasks": [
-          { "name": "Coursework", "type": "cw", "weight": 0.20, "maxScore": 100, "date": "Spring" },
-          { "name": "Examination", "type": "test", "weight": 0.80, "maxScore": 100, "date": "June" }
+          { "name": "Coursework", "type": "cw", "weight": 0.20, "maxScore": 100 },
+          { "name": "Examination", "type": "test", "weight": 0.80, "maxScore": 100 }
         ]
       },
       {
@@ -84,8 +84,8 @@
         "credits": 5,
         "term": "Terms 1 & 2",
         "tasks": [
-          { "name": "Coursework", "type": "cw", "weight": 0.20, "maxScore": 100, "date": "Spring" },
-          { "name": "Examination", "type": "test", "weight": 0.80, "maxScore": 100, "date": "June" }
+          { "name": "Coursework", "type": "cw", "weight": 0.20, "maxScore": 100 },
+          { "name": "Examination", "type": "test", "weight": 0.80, "maxScore": 100 }
         ]
       },
       {
@@ -94,7 +94,7 @@
         "credits": 5,
         "term": "Terms 1 & 2",
         "tasks": [
-          { "name": "Examination", "type": "test", "weight": 1.0, "maxScore": 100, "date": "June" }
+          { "name": "Examination", "type": "test", "weight": 1.0, "maxScore": 100 }
         ]
       }
     ]

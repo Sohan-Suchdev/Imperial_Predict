@@ -9,10 +9,10 @@
         "credits": 5,
         "term": "Term 1",
         "tasks": [
-          { "name": "CW1 - Data Representation", "type": "cw", "weight": 0.04, "maxScore": 60, "date": "Oct 26" },
-          { "name": "CW2 - Combinatorial Circuit Design", "type": "cw", "weight": 0.08, "maxScore": 100, "date": "Nov 16" },
-          { "name": "CW3 - Registers", "type": "cw", "weight": 0.08, "maxScore": 60, "date": "Dec 7" },
-          { "name": "Computer Systems Final", "type": "test", "weight": 0.80, "maxScore": 100, "date": "May 10" }
+          { "name": "CW1 - Data Representation", "type": "cw", "weight": 0.04, "maxScore": 60 },
+          { "name": "CW2 - Combinatorial Circuit Design", "type": "cw", "weight": 0.08, "maxScore": 100 },
+          { "name": "CW3 - Registers", "type": "cw", "weight": 0.08, "maxScore": 60 },
+          { "name": "Computer Systems Final", "type": "test", "weight": 0.80, "maxScore": 100 }
         ]
       },
       {
@@ -21,9 +21,9 @@
         "credits": 5,
         "term": "Term 2",
         "tasks": [
-          { "name": "CW1", "type": "cw", "weight": 0.10, "maxScore": 100, "date": "Feb 22" },
-          { "name": "CW2", "type": "cw", "weight": 0.10, "maxScore": 70, "date": "Mar 21" },
-          { "name": "Computer Architecture Final", "type": "test", "weight": 0.80, "maxScore": 100, "date": "May 1" }
+          { "name": "CW1", "type": "cw", "weight": 0.10, "maxScore": 100 },
+          { "name": "CW2", "type": "cw", "weight": 0.10, "maxScore": 70 },
+          { "name": "Computer Architecture Final", "type": "test", "weight": 0.80, "maxScore": 100 }
         ]
       },
       {
@@ -32,9 +32,9 @@
         "credits": 5,
         "term": "Term 1",
         "tasks": [
-          { "name": "IDB_CW1", "type": "cw", "weight": 0.10, "maxScore": 100, "date": "Nov 14" },
-          { "name": "IDB_CW2", "type": "cw", "weight": 0.10, "maxScore": 100, "date": "Nov 28" },
-          { "name": "Databases Final", "type": "test", "weight": 0.80, "maxScore": 100, "date": "May 13" }
+          { "name": "IDB_CW1", "type": "cw", "weight": 0.10, "maxScore": 100 },
+          { "name": "IDB_CW2", "type": "cw", "weight": 0.10, "maxScore": 100 },
+          { "name": "Databases Final", "type": "test", "weight": 0.80, "maxScore": 100 }
         ]
       },
       {
@@ -43,8 +43,8 @@
         "credits": 5,
         "term": "Term 2",
         "tasks": [
-          { "name": "CW", "type": "cw", "weight": 0.20, "maxScore": 30, "date": "Mar 14" },
-          { "name": "Final", "type": "test", "weight": 0.80, "maxScore": 100, "date": "May 7" }
+          { "name": "CW", "type": "cw", "weight": 0.20, "maxScore": 30 },
+          { "name": "Final", "type": "test", "weight": 0.80, "maxScore": 100 }
         ]
       },
       {
@@ -53,14 +53,14 @@
         "credits": 20,
         "term": "Full Year",
         "tasks": [
-          { "name": "Haskell Interrim", "type": "test", "weight": 0.05, "maxScore": 25, "date": "Nov 10" },
-          { "name": "Haskell Final", "type": "test", "weight": 0.25, "maxScore": 30, "date": "Jan 10" },
-          { "name": "Ethics (Video Presentation)", "type": "project", "weight": 0.05, "maxScore": 100, "date": "Dec 15" },
-          { "name": "Ethics (Individual Report)", "type": "project", "weight": 0.05, "maxScore": 100, "date": "Dec 15" },
-          { "name": "Kotlin Interrim", "type": "test", "weight": 0.05, "maxScore": 100, "date": "Mar 15" },
-          { "name": "Kotlin Final", "type": "test", "weight": 0.35, "maxScore": 100, "date": "Apr 29" },
-          { "name": "Group Project", "type": "project", "weight": 0.08, "maxScore": 100, "date": "June 21" },
-          { "name": "C Final", "type": "test", "weight": 0.12, "maxScore": 100, "date": "June 21" }
+          { "name": "Haskell Interrim", "type": "test", "weight": 0.05, "maxScore": 20 },
+          { "name": "Haskell Final", "type": "test", "weight": 0.25, "maxScore": 30 },
+          { "name": "Ethics (Video Presentation)", "type": "project", "weight": 0.05, "maxScore": 100 },
+          { "name": "Ethics (Individual Report)", "type": "project", "weight": 0.05, "maxScore": 100 },
+          { "name": "Kotlin Interrim", "type": "test", "weight": 0.05, "maxScore": 100 },
+          { "name": "Kotlin Final", "type": "test", "weight": 0.35, "maxScore": 100 },
+          { "name": "Group Project", "type": "project", "weight": 0.08, "maxScore": 100 },
+          { "name": "C Final", "type": "test", "weight": 0.12, "maxScore": 100 }
         ]
       },
       {
@@ -69,11 +69,11 @@
         "credits": 5,
         "term": "Term 1",
         "tasks": [
-          { "name": "MMT1", "type": "cw", "weight": 0.05, "maxScore": 20, "date": "Oct 24" },
-          { "name": "MMT2", "type": "cw", "weight": 0.05, "maxScore": 20, "date": "Nov 6" },
-          { "name": "MMT3", "type": "cw", "weight": 0.05, "maxScore": 20, "date": "Nov 21" },
-          { "name": "MMT4", "type": "cw", "weight": 0.05, "maxScore": 20, "date": "Dec 5" },
-          { "name": "Calculus Final", "type": "test", "weight": 0.80, "maxScore": 100, "date": "May 15" }
+          { "name": "MMT1", "type": "cw", "weight": 0.05, "maxScore": 20 },
+          { "name": "MMT2", "type": "cw", "weight": 0.05, "maxScore": 20 },
+          { "name": "MMT3", "type": "cw", "weight": 0.05, "maxScore": 20 },
+          { "name": "MMT4", "type": "cw", "weight": 0.05, "maxScore": 20 },
+          { "name": "Calculus Final", "type": "test", "weight": 0.80, "maxScore": 100 }
         ]
       },
       {
@@ -82,11 +82,11 @@
         "credits": 5,
         "term": "Term 2",
         "tasks": [
-          { "name": "MMT1", "type": "cw", "weight": 0.05, "maxScore": 20, "date": "Jan 30" },
-          { "name": "MMT2", "type": "cw", "weight": 0.05, "maxScore": 20, "date": "Feb 13" },
-          { "name": "MMT3", "type": "cw", "weight": 0.05, "maxScore": 20, "date": "Feb 27" },
-          { "name": "MMT4", "type": "cw", "weight": 0.05, "maxScore": 20, "date": "Mar 12" },
-          { "name": "Linear Algebra Final", "type": "test", "weight": 0.80, "maxScore": 100, "date": "May 9" }
+          { "name": "MMT1", "type": "cw", "weight": 0.05, "maxScore": 20 },
+          { "name": "MMT2", "type": "cw", "weight": 0.05, "maxScore": 20 },
+          { "name": "MMT3", "type": "cw", "weight": 0.05, "maxScore": 20 },
+          { "name": "MMT4", "type": "cw", "weight": 0.05, "maxScore": 20 },
+          { "name": "Linear Algebra Final", "type": "test", "weight": 0.80, "maxScore": 100 }
         ]
       },
       {
@@ -95,12 +95,12 @@
         "credits": 10,
         "term": "Full Year",
         "tasks": [
-          { "name": "DM Test", "type": "test", "weight": 0.05, "maxScore": 20, "date": "Nov 2" },
-          { "name": "PL CW", "type": "cw", "weight": 0.05, "maxScore": 30, "date": "Nov 30" },
-          { "name": "FOL CW", "type": "cw", "weight": 0.05, "maxScore": 30, "date": "Nov 30" },
-          { "name": "Reasoning CW", "type": "cw", "weight": 0.05, "maxScore": 25, "date": "Feb 9" },
-          { "name": "Discrete Maths final", "type": "test", "weight": 0.2666666667, "maxScore": 20, "date": "May 17" },
-          { "name": "Logic & Reasoning final", "type": "test", "weight": 0.5333333333, "maxScore": 20, "date": "May 3" }
+          { "name": "DM CW", "type": "cw", "weight": 0.05, "maxScore": 20 },
+          { "name": "PL CW", "type": "cw", "weight": 0.05, "maxScore": 30 },
+          { "name": "FOL CW", "type": "cw", "weight": 0.05, "maxScore": 30 },
+          { "name": "Reasoning CW", "type": "cw", "weight": 0.05, "maxScore": 25 },
+          { "name": "Discrete Maths final", "type": "test", "weight": 0.2666666667, "maxScore": 20 },
+          { "name": "Logic & Reasoning final", "type": "test", "weight": 0.5333333333, "maxScore": 20 }
         ]
       }
     ]

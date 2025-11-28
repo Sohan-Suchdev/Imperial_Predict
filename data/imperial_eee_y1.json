@@ -9,10 +9,10 @@
         "credits": 15,
         "term": "Full Year",
         "tasks": [
-          { "name": "Wiseflow 1", "type": "test", "weight": 0.05, "maxScore": 100, "date": "Term 1" },
-          { "name": "Exam 1", "type": "test", "weight": 0.45, "maxScore": 100, "date": "Jan" },
-          { "name": "Wiseflow 2", "type": "test", "weight": 0.05, "maxScore": 100, "date": "Term 2" },
-          { "name": "Exam 2", "type": "test", "weight": 0.45, "maxScore": 100, "date": "June" }
+          { "name": "Wiseflow 1", "type": "test", "weight": 0.05, "maxScore": 100 },
+          { "name": "Exam 1", "type": "test", "weight": 0.45, "maxScore": 100 },
+          { "name": "Wiseflow 2", "type": "test", "weight": 0.05, "maxScore": 100 },
+          { "name": "Exam 2", "type": "test", "weight": 0.45, "maxScore": 100 }
         ]
       },
       {
@@ -21,11 +21,11 @@
         "credits": 10,
         "term": "Full Year",
         "tasks": [
-          { "name": "Wiseflow 1", "type": "test", "weight": 0.05, "maxScore": 100, "date": "Term 1" },
-          { "name": "Lab Oral 1", "type": "cw", "weight": 0.15, "maxScore": 100, "date": "Term 1" },
-          { "name": "Wiseflow 2", "type": "test", "weight": 0.05, "maxScore": 100, "date": "Term 2" },
-          { "name": "Lab Oral 2", "type": "cw", "weight": 0.15, "maxScore": 100, "date": "Term 2" },
-          { "name": "Final Exam", "type": "test", "weight": 0.60, "maxScore": 100, "date": "June" }
+          { "name": "Wiseflow 1", "type": "test", "weight": 0.05, "maxScore": 100 },
+          { "name": "Lab Oral 1", "type": "cw", "weight": 0.15, "maxScore": 100 },
+          { "name": "Wiseflow 2", "type": "test", "weight": 0.05, "maxScore": 100 },
+          { "name": "Lab Oral 2", "type": "cw", "weight": 0.15, "maxScore": 100 },
+          { "name": "Final Exam", "type": "test", "weight": 0.60, "maxScore": 100 }
         ]
       },
       {
@@ -34,11 +34,11 @@
         "credits": 10,
         "term": "Full Year",
         "tasks": [
-          { "name": "Wiseflow 1", "type": "test", "weight": 0.05, "maxScore": 100, "date": "Term 1" },
-          { "name": "Lab Oral 1", "type": "cw", "weight": 0.15, "maxScore": 100, "date": "Term 1" },
-          { "name": "Wiseflow 2", "type": "test", "weight": 0.05, "maxScore": 100, "date": "Term 2" },
-          { "name": "Lab Oral 2", "type": "cw", "weight": 0.15, "maxScore": 100, "date": "Term 2" },
-          { "name": "Final Exam", "type": "test", "weight": 0.60, "maxScore": 100, "date": "June" }
+          { "name": "Wiseflow 1", "type": "test", "weight": 0.05, "maxScore": 100 },
+          { "name": "Lab Oral 1", "type": "cw", "weight": 0.15, "maxScore": 100 },
+          { "name": "Wiseflow 2", "type": "test", "weight": 0.05, "maxScore": 100 },
+          { "name": "Lab Oral 2", "type": "cw", "weight": 0.15, "maxScore": 100 },
+          { "name": "Final Exam", "type": "test", "weight": 0.60, "maxScore": 100 }
         ]
       },
       {
@@ -47,11 +47,11 @@
         "credits": 10,
         "term": "Full Year",
         "tasks": [
-          { "name": "Wiseflow", "type": "test", "weight": 0.05, "maxScore": 100, "date": "Term 1" },
-          { "name": "Assignment 1", "type": "cw", "weight": 0.18, "maxScore": 100, "date": "Term 1" },
-          { "name": "Wiseflow 2", "type": "test", "weight": 0.05, "maxScore": 100, "date": "Term 2" },
-          { "name": "Assignment 2", "type": "cw", "weight": 0.28, "maxScore": 100, "date": "Term 2" },
-          { "name": "Assignment 3", "type": "cw", "weight": 0.44, "maxScore": 100, "date": "Term 3" }
+          { "name": "Wiseflow", "type": "test", "weight": 0.05, "maxScore": 100 },
+          { "name": "Assignment 1", "type": "cw", "weight": 0.18, "maxScore": 100 },
+          { "name": "Wiseflow 2", "type": "test", "weight": 0.05, "maxScore": 100 },
+          { "name": "Assignment 2", "type": "cw", "weight": 0.28, "maxScore": 100 },
+          { "name": "Assignment 3", "type": "cw", "weight": 0.44, "maxScore": 100 }
         ]
       },
       {
@@ -60,9 +60,9 @@
         "credits": 7.5,
         "term": "Full Year",
         "tasks": [
-          { "name": "Wiseflow 1", "type": "test", "weight": 0.34, "maxScore": 100, "date": "Term 1" },
-          { "name": "Wiseflow 2", "type": "test", "weight": 0.33, "maxScore": 100, "date": "Term 2" },
-          { "name": "Wiseflow 3", "type": "test", "weight": 0.33, "maxScore": 100, "date": "Term 3" }
+          { "name": "Wiseflow 1", "type": "test", "weight": 0.34, "maxScore": 100 },
+          { "name": "Wiseflow 2", "type": "test", "weight": 0.33, "maxScore": 100 },
+          { "name": "Wiseflow 3", "type": "test", "weight": 0.33, "maxScore": 100 }
         ]
       },
       {
@@ -71,7 +71,7 @@
         "credits": 7.5,
         "term": "Term 3",
         "tasks": [
-          { "name": "Project", "type": "cw", "weight": 1.0, "maxScore": 100, "date": "June" }
+          { "name": "Project", "type": "cw", "weight": 1.0, "maxScore": 100 }
         ]
       }
     ]
