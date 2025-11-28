@@ -1,9 +1,3 @@
-/**
- * IMPERIAL PREDICT - LOGIC ENGINE
- * -------------------------------
- * Now supports Multi-Course Navigation (Hub)
- */
-
 // --- 1. CONFIGURATION ---
 const INDEX_FILE = 'data/courses_index.json'; // The Menu
 const TERM_ORDER = ["Term 1", "Term 2", "Terms 1 & 2", "Terms 2 & 3", "Term 3", "Full Year"]; 
@@ -138,7 +132,7 @@ function loadCourse(filepath) {
     document.getElementById('hub-view').style.display = 'none';
     document.getElementById('calculator-view').style.display = 'block';
     
-    // Hide Hero on Calculator View (Optional, but gives more space)
+    // Hide on Calculator View
     document.querySelector('.hero').style.display = 'none';
     
     document.getElementById('app').innerHTML = '<div class="loading">Loading course data...</div>';
@@ -351,4 +345,5 @@ function calculateGrades() {
     else if (finalAverage >= 60) document.getElementById('band-21').classList.add('active');
     else if (finalAverage >= 50) document.getElementById('band-22').classList.add('active');
     else if (finalAverage >= 40) document.getElementById('band-3rd').classList.add('active');
+
 }
