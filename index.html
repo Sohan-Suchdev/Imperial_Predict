@@ -6,19 +6,32 @@
     <title>ImperialPredict</title>
     <!-- Link to the external CSS file -->
     <link rel="stylesheet" href="style.css">
+    
+    <!-- GOATCOUNTER ANALYTICS (Privacy-friendly, no cookies) -->
+    <!-- Replace 'imperial-predict' with your actual goatcounter code -->
+    <script data-goatcounter="https://sohan-suchdev.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
+
+    <!-- HERO SECTION (Top Banner) -->
+    <header class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">ImperialPredict</h1>
+            <p class="hero-subtitle">Track your grades. Predict your degree.</p>
+        </div>
+        <div class="hero-actions">
+            <!-- Info Button -->
+            <button class="icon-btn" onclick="openModal()" title="How to use">ℹ️</button>
+            <!-- Theme Toggle -->
+            <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark Mode">🌙</button>
+        </div>
+    </header>
 
     <div class="container">
         
         <!-- === VIEW 1: THE HUB (Course Selection) === -->
         <div id="hub-view">
-            <div style="display:flex; justify-content:flex-end;">
-                <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark Mode">🌙</button>
-            </div>
-            
-            <h1 class="hub-title">ImperialPredict</h1>
-            
             <!-- Announcement Box -->
             <div id="hub-announcement" class="announcement-box">
                 <div class="loading">Loading courses...</div>
@@ -26,20 +39,17 @@
 
             <!-- Course List -->
             <div id="hub-course-list">
-                <!-- JS will fill this with departments and buttons -->
+                <!-- JS will fill this -->
             </div>
         </div>
 
 
         <!-- === VIEW 2: THE CALCULATOR (Modules) === -->
-        <!-- Hidden by default -->
         <div id="calculator-view" style="display: none;">
             
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-                <!-- Navigation -->
+            <!-- Navigation -->
+            <div style="margin-bottom: 20px;">
                 <button onclick="showHub()" class="back-btn">← Back to Courses</button>
-                <!-- Theme Toggle (Duplicate for easy access) -->
-                <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark Mode">🌙</button>
             </div>
 
             <!-- Sticky Header -->
@@ -53,10 +63,32 @@
 
             <!-- App Container (The Cards) -->
             <div id="app">
-                <!-- JS fills this when a course is selected -->
+                <!-- JS fills this -->
             </div>
         </div>
 
+    </div>
+
+    <!-- SITE FOOTER -->
+    <footer class="site-footer">
+        <p>Built for Imperial Students.</p>
+        <p>
+            <a href="#" onclick="openModal()">About & Guide</a> • 
+            <a href="https://github.com/Sohan-Suchdev" target="_blank">My GitHub</a>
+        </p>
+    </footer>
+
+    <!-- INFO MODAL -->
+    <div id="info-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <h2>How to use ImperialPredict</h2>
+            <p><strong>1. Select your Course:</strong> Choose your department and year from the hub.</p>
+            <p><strong>2. Enter Grades:</strong> Type your marks (0-100) or use the sliders.</p>
+            <p><strong>3. Dynamic Prediction:</strong> Use the checkboxes to <strong>ignore</strong> assignments you haven't done yet. The calculator will re-weight your grade based only on completed work.</p>
+            <hr>
+            <p><small><strong>Privacy Note:</strong> All data is stored locally on your device. We do not see your grades.</small></p>
+        </div>
     </div>
 
     <!-- Link to the external JavaScript file -->

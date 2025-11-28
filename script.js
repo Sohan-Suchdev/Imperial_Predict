@@ -6,7 +6,7 @@
 
 // --- 1. CONFIGURATION ---
 const INDEX_FILE = 'data/courses_index.json'; // The Menu
-const TERM_ORDER = ["Term 1", "Term 2", "Terms 1 & 2", "Terms 2 & 3", "Term 3", "Full Year"]; // Added new term types
+const TERM_ORDER = ["Term 1", "Term 2", "Terms 1 & 2", "Terms 2 & 3", "Term 3", "Full Year"]; 
 const PASS_MARK_PERCENTAGE = 0.40;
 
 // State
@@ -16,40 +16,31 @@ let indexData = null;  // Stores the menu
 
 // --- 2. INITIALIZATION ---
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Load Theme Preference (Defaulting to Dark)
     initTheme();
-    // 2. Start by loading the HUB
     loadHub();
 });
 
 
-// --- 3. THEME LOGIC (Dark Mode Default) ---
+// --- 3. THEME & MODAL LOGIC ---
 
 function initTheme() {
     const savedTheme = localStorage.getItem('imperial-theme');
-    
-    // Check if Dark Mode should be active:
-    // 1. If user explicitly saved 'dark'
-    // 2. OR if user has never saved a preference (null) -> Default to Dark
     if (savedTheme === 'dark' || savedTheme === null) {
         document.body.setAttribute('data-theme', 'dark');
-        updateThemeIcons('☀️'); // Set icon to Sun (to allow switching to Light)
+        updateThemeIcons('☀️'); 
     } else {
-        // Explicitly 'light'
         document.body.removeAttribute('data-theme');
-        updateThemeIcons('🌙'); // Set icon to Moon
+        updateThemeIcons('🌙'); 
     }
 }
 
 function toggleTheme() {
     const currentTheme = document.body.getAttribute('data-theme');
     if (currentTheme === 'dark') {
-        // Switch to Light
         document.body.removeAttribute('data-theme');
         localStorage.setItem('imperial-theme', 'light');
         updateThemeIcons('🌙'); 
     } else {
-        // Switch to Dark
         document.body.setAttribute('data-theme', 'dark');
         localStorage.setItem('imperial-theme', 'dark');
         updateThemeIcons('☀️');
@@ -57,8 +48,24 @@ function toggleTheme() {
 }
 
 function updateThemeIcons(icon) {
-    // Update all toggle buttons on page
     document.querySelectorAll('.theme-toggle').forEach(btn => btn.textContent = icon);
+}
+
+// Modal Functions
+function openModal() {
+    document.getElementById('info-modal').style.display = 'block';
+}
+
+function closeModal() {
+    document.getElementById('info-modal').style.display = 'none';
+}
+
+// Close modal if user clicks outside of it
+window.onclick = function(event) {
+    const modal = document.getElementById('info-modal');
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
 }
 
 
@@ -79,7 +86,6 @@ function renderHub() {
     const announcementBox = document.getElementById('hub-announcement');
     const courseList = document.getElementById('hub-course-list');
 
-    // 1. Render Announcement
     announcementBox.innerHTML = `
         <div class="announcement-header">
             <span>📢</span> ${indexData.announcement.title}
@@ -92,20 +98,17 @@ function renderHub() {
         </div>
     `;
 
-    // 2. Render Departments & Courses
     courseList.innerHTML = '';
     
     indexData.departments.forEach(dept => {
         const section = document.createElement('div');
         section.className = 'dept-section';
         
-        // Title
         const title = document.createElement('div');
         title.className = 'dept-title';
         title.textContent = dept.name;
         section.appendChild(title);
 
-        // Grid of Buttons
         const grid = document.createElement('div');
         grid.className = 'course-grid';
 
@@ -115,10 +118,8 @@ function renderHub() {
             btn.textContent = course.name;
             
             if (course.file) {
-                // If it's a real course, add click handler
                 btn.onclick = () => loadCourse(course.file);
             } else {
-                // If "Coming Soon", disable it
                 btn.classList.add('disabled');
                 btn.disabled = true;
             }
@@ -134,28 +135,28 @@ function renderHub() {
 // --- 5. NAVIGATION LOGIC ---
 
 function loadCourse(filepath) {
-    // 1. Switch Views
     document.getElementById('hub-view').style.display = 'none';
     document.getElementById('calculator-view').style.display = 'block';
     
-    // 2. Clear old data
-    document.getElementById('app').innerHTML = '<div class="loading">Loading course data...</div>';
+    // Hide Hero on Calculator View (Optional, but gives more space)
+    document.querySelector('.hero').style.display = 'none';
     
-    // 3. Fetch specific course data
+    document.getElementById('app').innerHTML = '<div class="loading">Loading course data...</div>';
     fetchCourseData(filepath);
 }
 
 function showHub() {
-    // Switch back to Hub
     document.getElementById('calculator-view').style.display = 'none';
     document.getElementById('hub-view').style.display = 'block';
     
-    // Optional: Scroll to top
+    // Show Hero again
+    document.querySelector('.hero').style.display = 'flex';
+    
     window.scrollTo(0, 0);
 }
 
 
-// --- 6. CALCULATOR LOGIC (The existing engine) ---
+// --- 6. CALCULATOR LOGIC ---
 
 async function fetchCourseData(file) {
     try {
@@ -172,17 +173,11 @@ function renderApp() {
     const app = document.getElementById('app');
     const courseNameEl = document.getElementById('course-name');
 
-    // Set Header
     courseNameEl.textContent = courseData.courseName;
     app.innerHTML = '';
 
-    // Render Degree Classification Card
     app.appendChild(createSummaryCard());
-
-    // Group and Render Modules
     renderModulesByTerm(app);
-
-    // Initial Calc
     calculateGrades();
 }
 
@@ -244,7 +239,7 @@ function createModuleCard(module, globalModuleIndex) {
                 </div>
                 <div class="task-info">
                     <span class="task-name">${task.name}</span>
-                    <span class="task-meta">${task.date} • Weight: ${weightPct}</span>
+                    <span class="task-meta">Weight: ${weightPct}</span>
                 </div>
                 <div class="task-input-group">
                     <input type="range" class="task-slider" min="0" max="${task.maxScore}" value="${defaultVal}"
