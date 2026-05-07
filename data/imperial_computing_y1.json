@@ -98,9 +98,9 @@
           { "name": "DM test", "type": "test", "weight": 0.05, "maxScore": 20 },
           { "name": "PL CW", "type": "cw", "weight": 0.05, "maxScore": 30 },
           { "name": "FOL CW", "type": "cw", "weight": 0.05, "maxScore": 30 },
-          { "name": "Reasoning CW", "type": "cw", "weight": 0.05, "maxScore": 25 },
-          { "name": "Discrete Maths final", "type": "test", "weight": 0.2666666667, "maxScore": 20 },
-          { "name": "Logic & Reasoning final", "type": "test", "weight": 0.5333333333, "maxScore": 20 }
+          { "name": "Reasoning CW", "type": "cw", "weight": 0.05, "maxScore": 40 },
+          { "name": "Discrete Maths final", "type": "test", "weight": 0.2666666667, "maxScore": 100 },
+          { "name": "Logic & Reasoning final", "type": "test", "weight": 0.5333333333, "maxScore": 100 }
         ]
       }
     ]
