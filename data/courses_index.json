@@ -1,7 +1,7 @@
 {
   "announcement": {
-    "title": "👋 Welcome to ImperialPredict",
-    "message": "Select your course below to start tracking your grades. Data is updated for the 2025/26 academic year.",
+    "title": "Welcome to ImperialPredict",
+    "message": "Select your course below to calculate your current standing, test 'Pass Mode', or predict your final degree using the sliders. Data is updated for the 2025/26 academic year.<br><br> Click the ℹ️ icon in the top right for a guide on the features.",
     "footer": "Missing your course? Contact me on GitHub to add it."
   },
   "departments": [

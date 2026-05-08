@@ -107,14 +107,39 @@
 
     <!-- INFO MODAL -->
     <div id="info-modal" class="modal">
-        <div class="modal-content">
+        <div class="modal-content" style="max-height: 80vh; overflow-y: auto;">
             <span class="close-modal" onclick="closeModal()">&times;</span>
-            <h2>How to use ImperialPredict</h2>
-            <p><strong>1. Select your Course:</strong> Choose your department and year from the hub.</p>
-            <p><strong>2. Enter Grades:</strong> Type your marks (0-100) or use the sliders.</p>
-            <p><strong>3. Dynamic Prediction:</strong> Use the checkboxes to <strong>ignore</strong> assignments you haven't done yet. The calculator will re-weight your grade based only on completed work.</p>
-            <hr>
-            <p><small><strong>Privacy Note:</strong> All data is stored locally on your device. We do not see your grades.</small></p>
+            <h2 style="margin-top: 0;">📖 How to Use ImperialPredict</h2>
+
+            <div style="margin-bottom: 20px;">
+                <h3 style="color: var(--imperial-blue); margin-bottom: 5px; font-size: 1.1em;">1. The Basics</h3>
+                <p style="margin: 0 0 10px 0; font-size: 0.95em;">Select your course and enter your marks (0-100) using the inputs or sliders. <strong>Your data auto-saves</strong> to your browser, so you'll never lose your progress.</p>
+            </div>
+
+            <div style="margin-bottom: 20px;">
+                <h3 style="color: var(--imperial-blue); margin-bottom: 5px; font-size: 1.1em;">2. Checkboxes & "Ignored" Work</h3>
+                <p style="margin: 0 0 10px 0; font-size: 0.95em;"><strong>Uncheck</strong> any assignments or whole modules you haven't completed yet. The calculator will completely ignore them and re-weight your year average based <em>only</em> on the work you've actually done.</p>
+            </div>
+
+            <div style="margin-bottom: 20px;">
+                <h3 style="color: var(--imperial-blue); margin-bottom: 5px; font-size: 1.1em;">3. 🛡️ Pass Mode (40%)</h3>
+                <p style="margin: 0 0 10px 0; font-size: 0.95em;">Toggle <strong>Pass Mode</strong> at the top to temporarily treat all your <em>unchecked</em> assignments as a bare pass (40%). This reveals your absolute "worst-case scenario" floor grade if you just scrape by on the rest of the year.</p>
+            </div>
+
+            <div style="margin-bottom: 20px;">
+                <h3 style="color: var(--imperial-blue); margin-bottom: 5px; font-size: 1.1em;">4. 🎯 Target Predictor & Auto-Fill</h3>
+                <p style="margin: 0 0 8px 0; font-size: 0.95em;">Select a Target Degree (e.g., 2:1) from the dropdown. The app will calculate the exact average you need on your remaining (unchecked) work.</p>
+                <ul style="margin: 0; padding-left: 20px; font-size: 0.9em; line-height: 1.5;">
+                    <li style="margin-bottom: 6px;">Click <strong>Auto-Fill Target Grades</strong> to instantly snap all unchecked sliders to the exact marks required.</li>
+                    <li style="margin-bottom: 6px;">Once auto-filled, drag any purple slider up or down. The other purple sliders will automatically adjust to balance out your target average!</li>
+                    <li> If you are playing with the purple sliders and decide "I can definitely get an 80% on this specific coursework," just <strong>check its box</strong>. This locks that grade in as an achieved score, preventing the See-Saw from altering it further.</li>
+                </ul>
+            </div>
+
+            <hr style="border: none; border-top: 1px solid var(--border-color); margin: 25px 0 15px 0;">
+            <p style="margin: 0; font-size: 0.85em; color: var(--secondary-text); text-align: center;">
+                <strong>Privacy Note:</strong> All data is stored locally on your device. We do not see your grades. Hit the <strong style="color: var(--danger-red);">🗑️ Reset Grades</strong> button to clear your data completely.
+            </p>
         </div>
     </div>
 
