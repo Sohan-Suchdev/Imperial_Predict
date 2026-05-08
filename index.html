@@ -4,50 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ImperialPredict</title>
-    <!-- Link to the external CSS file -->
     <link rel="stylesheet" href="style.css">
-    
-    <!-- GOATCOUNTER ANALYTICS (Privacy-friendly, no cookies) -->
-    <!-- Replace 'imperial-predict' with your actual goatcounter code -->
-    <script data-goatcounter="https://sohan-suchdev.goatcounter.com/count"
-        async src="//gc.zgo.at/count.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script data-goatcounter="https://sohan-suchdev.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
 
-    <!-- HERO SECTION (Top Banner) -->
     <header class="hero">
         <div class="hero-content">
             <h1 class="hero-title">ImperialPredict</h1>
             <p class="hero-subtitle">Track your grades. Predict your degree.</p>
         </div>
         <div class="hero-actions">
-            <!-- Info Button -->
             <button class="icon-btn" onclick="openModal()" title="How to use">ℹ️</button>
-            <!-- Theme Toggle -->
             <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark Mode">🌙</button>
         </div>
     </header>
 
     <div class="container">
-        
-        <!-- === VIEW 1: THE HUB (Course Selection) === -->
         <div id="hub-view">
-            <!-- Announcement Box -->
             <div id="hub-announcement" class="announcement-box">
                 <div class="loading">Loading courses...</div>
             </div>
-
-            <!-- Course List -->
-            <div id="hub-course-list">
-                <!-- JS will fill this -->
-            </div>
+            <div id="hub-course-list"></div>
         </div>
 
-
-        <!-- === VIEW 2: THE CALCULATOR (Modules) === -->
         <div id="calculator-view" style="display: none;">
             
-            <!-- Navigation -->
             <div style="margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center;">
                 <button onclick="showHub()" class="back-btn">← Back to Courses</button>
                 <button onclick="clearCourseState()" class="danger-btn">
@@ -56,7 +39,6 @@
                 </button>
             </div>
 
-            <!-- Sticky Header -->
             <div class="sticky-header">
                 <h1 class="header-title">ImperialPredict</h1>
                 <p class="header-subtitle">
@@ -88,15 +70,17 @@
                 </div>
             </div>
 
-            <!-- App Container (The Cards) -->
-            <div id="app">
-                <!-- JS fills this -->
+            <div id="trajectory-container" style="display: none; background: var(--card-bg); border-radius: 12px; padding: 20px; margin-bottom: 24px; box-shadow: 0 2px 8px var(--shadow-color);">
+                <h3 style="margin-top:0; color: var(--imperial-blue); font-size:1.1em; text-align:center;">Term Trajectory</h3>
+                <div style="position: relative; height: 120px; width: 100%;">
+                    <canvas id="trajectory-chart"></canvas>
+                </div>
             </div>
-        </div>
 
+            <div id="app"></div>
+        </div>
     </div>
 
-    <!-- SITE FOOTER -->
     <footer class="site-footer">
         <p>Built for Imperial Students.</p>
         <p>
@@ -105,7 +89,6 @@
         </p>
     </footer>
 
-    <!-- INFO MODAL -->
     <div id="info-modal" class="modal">
         <div class="modal-content" style="max-height: 80vh; overflow-y: auto;">
             <span class="close-modal" onclick="closeModal()">&times;</span>
@@ -130,10 +113,15 @@
                 <h3 style="color: var(--imperial-blue); margin-bottom: 5px; font-size: 1.1em;">4. 🎯 Target Predictor & Auto-Fill</h3>
                 <p style="margin: 0 0 8px 0; font-size: 0.95em;">Select a Target Degree (e.g., 2:1) from the dropdown. The app will calculate the exact average you need on your remaining (unchecked) work.</p>
                 <ul style="margin: 0; padding-left: 20px; font-size: 0.9em; line-height: 1.5;">
-                    <li style="margin-bottom: 6px;">Click <strong>Auto-Fill Target Grades</strong> to instantly snap all unchecked sliders to the exact marks required.</li>
+                    <li style="margin-bottom: 6px;">Click <strong>🪄 Auto-Fill Target Grades</strong> to instantly snap all unchecked sliders to the exact marks required.</li>
                     <li style="margin-bottom: 6px;">Once auto-filled, drag any purple slider up or down. The other purple sliders will automatically adjust to balance out your target average!</li>
-                    <li> If you are playing with the purple sliders and decide "I can definitely get an 80% on this specific coursework," just <strong>check its box</strong>. This locks that grade in as an achieved score, preventing the See-Saw from altering it further.</li>
+                    <li>If you are playing with the purple sliders and decide "I can definitely get an 80% on this specific coursework," just <strong>check its box</strong>. This locks that grade in as an achieved score, preventing the See-Saw from altering it further.</li>
                 </ul>
+            </div>
+
+            <div style="margin-bottom: 20px;">
+                <h3 style="color: var(--imperial-blue); margin-bottom: 5px; font-size: 1.1em;">5. Module Insights & Trajectory</h3>
+                <p style="margin: 0 0 10px 0; font-size: 0.95em;">Click the <strong>ℹ️ Insights</strong> button on a module to view its historical difficulty and read specific examiner feedback on where past students lost marks. The Trajectory Graph at the top of the page tracks your genuine performance across the academic terms.</p>
             </div>
 
             <hr style="border: none; border-top: 1px solid var(--border-color); margin: 25px 0 15px 0;">
@@ -142,8 +130,7 @@
             </p>
         </div>
     </div>
-
-    <!-- Link to the external JavaScript file -->
+    
     <script src="script.js"></script>
 </body>
 </html>

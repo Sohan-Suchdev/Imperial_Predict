@@ -1,18 +1,11 @@
-/**
- * IMPERIAL PREDICT - LOGIC ENGINE
- * -------------------------------
- * Now supports Multi-Course Navigation (Hub)
- */
-
 // --- 1. CONFIGURATION ---
-const INDEX_FILE = 'data/courses_index.json'; // The Menu
+const INDEX_FILE = 'data/courses_index.json';
 const TERM_ORDER = ["Term 1", "Term 2", "Terms 1 & 2", "Terms 2 & 3", "Term 3", "Full Year"]; 
 const PASS_MARK_PERCENTAGE = 0.40;
 
-// State
-let courseData = null; // Stores currently loaded course
-let indexData = null;  // Stores the menu
-
+let courseData = null; 
+let indexData = null;  
+let chartInstances = {}; // Tracks Insights Chart.js instances
 
 // --- 2. INITIALIZATION ---
 document.addEventListener('DOMContentLoaded', () => {
@@ -20,9 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     loadHub();
 });
 
-
 // --- 3. THEME & MODAL LOGIC ---
-
 function initTheme() {
     const savedTheme = localStorage.getItem('imperial-theme');
     if (savedTheme === 'dark' || savedTheme === null) {
@@ -35,8 +26,7 @@ function initTheme() {
 }
 
 function toggleTheme() {
-    const currentTheme = document.body.getAttribute('data-theme');
-    if (currentTheme === 'dark') {
+    if (document.body.getAttribute('data-theme') === 'dark') {
         document.body.removeAttribute('data-theme');
         localStorage.setItem('imperial-theme', 'light');
         updateThemeIcons('🌙'); 
@@ -51,26 +41,14 @@ function updateThemeIcons(icon) {
     document.querySelectorAll('.theme-toggle').forEach(btn => btn.textContent = icon);
 }
 
-// Modal Functions
-function openModal() {
-    document.getElementById('info-modal').style.display = 'block';
-}
-
-function closeModal() {
-    document.getElementById('info-modal').style.display = 'none';
-}
-
-// Close modal if user clicks outside of it
+function openModal() { document.getElementById('info-modal').style.display = 'block'; }
+function closeModal() { document.getElementById('info-modal').style.display = 'none'; }
 window.onclick = function(event) {
     const modal = document.getElementById('info-modal');
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
+    if (event.target == modal) modal.style.display = "none";
 }
 
-
-// --- 4. HUB LOGIC (Menu System) ---
-
+// --- 4. HUB LOGIC ---
 async function loadHub() {
     try {
         const response = await fetch(INDEX_FILE);
@@ -87,15 +65,9 @@ function renderHub() {
     const courseList = document.getElementById('hub-course-list');
 
     announcementBox.innerHTML = `
-        <div class="announcement-header">
-            <span>📢</span> ${indexData.announcement.title}
-        </div>
-        <div class="announcement-text">
-            ${indexData.announcement.message}
-        </div>
-        <div class="announcement-footer">
-            ${indexData.announcement.footer}
-        </div>
+        <div class="announcement-header"><span>📢</span> ${indexData.announcement.title}</div>
+        <div class="announcement-text">${indexData.announcement.message}</div>
+        <div class="announcement-footer">${indexData.announcement.footer}</div>
     `;
 
     courseList.innerHTML = '';
@@ -103,12 +75,10 @@ function renderHub() {
     indexData.departments.forEach(dept => {
         const section = document.createElement('div');
         section.className = 'dept-section';
-        
         const title = document.createElement('div');
         title.className = 'dept-title';
         title.textContent = dept.name;
         section.appendChild(title);
-
         const grid = document.createElement('div');
         grid.className = 'course-grid';
 
@@ -116,7 +86,6 @@ function renderHub() {
             const btn = document.createElement('button');
             btn.className = 'course-btn';
             btn.textContent = course.name;
-            
             if (course.file) {
                 btn.onclick = () => loadCourse(course.file);
             } else {
@@ -125,22 +94,16 @@ function renderHub() {
             }
             grid.appendChild(btn);
         });
-
         section.appendChild(grid);
         courseList.appendChild(section);
     });
 }
 
-
 // --- 5. NAVIGATION LOGIC ---
-
 function loadCourse(filepath) {
     document.getElementById('hub-view').style.display = 'none';
     document.getElementById('calculator-view').style.display = 'block';
-    
-    // Hide Hero on Calculator View (Optional, but gives more space)
     document.querySelector('.hero').style.display = 'none';
-    
     document.getElementById('app').innerHTML = '<div class="loading">Loading course data...</div>';
     fetchCourseData(filepath);
 }
@@ -148,16 +111,11 @@ function loadCourse(filepath) {
 function showHub() {
     document.getElementById('calculator-view').style.display = 'none';
     document.getElementById('hub-view').style.display = 'block';
-    
-    // Show Hero again
     document.querySelector('.hero').style.display = 'flex';
-    
     window.scrollTo(0, 0);
 }
 
-
-// --- 6. CALCULATOR LOGIC ---
-
+// --- 6. CALCULATOR CORE ---
 async function fetchCourseData(file) {
     try {
         const response = await fetch(file);
@@ -169,20 +127,13 @@ async function fetchCourseData(file) {
     }
 }
 
-
 function renderApp() {
     const app = document.getElementById('app');
-    const courseNameEl = document.getElementById('course-name');
-
-    courseNameEl.textContent = courseData.courseName;
+    document.getElementById('course-name').textContent = courseData.courseName;
     app.innerHTML = '';
-
     app.appendChild(createSummaryCard());
     renderModulesByTerm(app);
-    
-    // LOAD SAVED STATE HERE
     loadCourseState();
-    
     calculateGrades();
 }
 
@@ -229,7 +180,6 @@ function renderModulesByTerm(container) {
 function createModuleCard(module, globalModuleIndex) {
     const card = document.createElement('div');
     card.className = 'module-card collapsed'; 
-    
     let tasksHtml = '';
     module.tasks.forEach((task, taskIndex) => {
         const weightPct = Math.round(task.weight * 100) + '%';
@@ -259,6 +209,26 @@ function createModuleCard(module, globalModuleIndex) {
         `;
     });
 
+    const hasInsights = module.insights && module.insights.historicalTrend;
+    const insightButtonHtml = hasInsights 
+        ? `<button class="insight-btn" onclick="event.stopPropagation(); toggleInsights(${globalModuleIndex})" title="View Module Insights">ℹ️ Insights</button>` 
+        : '';
+
+    let insightsHtml = '';
+    if (hasInsights) {
+        const feedbackItems = module.insights.feedbackSummary.map(fb => `<li>${fb}</li>`).join('');
+        insightsHtml = `
+            <div class="insights-panel" id="insights-${globalModuleIndex}">
+                <h4>Examiner Feedback Summary</h4>
+                <ul class="feedback-list">${feedbackItems}</ul>
+                <h4>Historical Average</h4>
+                <div class="chart-container">
+                    <canvas id="chart-${globalModuleIndex}"></canvas>
+                </div>
+            </div>
+        `;
+    }
+
     card.innerHTML = `
         <div class="module-header" onclick="toggleCard(this)">
             <div class="module-title-group">
@@ -272,15 +242,18 @@ function createModuleCard(module, globalModuleIndex) {
                     <span style="font-size:0.8em; color:#777;">Credits: ${module.credits}</span>
                 </div>
             </div>
-            <span class="module-grade" id="grade-${globalModuleIndex}">0%</span>
+            <div style="display:flex; align-items:center;">
+                <span class="module-grade" id="grade-${globalModuleIndex}">0%</span>
+                ${insightButtonHtml}
+            </div>
         </div>
         <div class="module-tasks">${tasksHtml}</div>
+        ${insightsHtml}
     `;
     return card;
 }
 
 function toggleCard(el) { el.parentElement.classList.toggle('collapsed'); }
-
 
 function calculateGrades() {
     let totalWeightedScore = 0;
@@ -288,7 +261,6 @@ function calculateGrades() {
     let totalCourseCredits = 0; 
     let absolutePointsAchieved = 0; 
 
-    // Changed to Pass Mode
     const isPassMode = document.getElementById('pass-mode-toggle')?.checked || false;
     const modules = courseData.year1.modules;
 
@@ -297,8 +269,6 @@ function calculateGrades() {
 
         const modCheckbox = document.querySelector(`.module-checkbox[data-module-index="${moduleIndex}"]`);
         const isModChecked = modCheckbox ? modCheckbox.checked : true;
-        
-        // In pass mode, we pretend the module is "active" even if unchecked
         const isModuleActive = isPassMode ? true : isModChecked;
 
         let currentModuleScore = 0; 
@@ -311,40 +281,33 @@ function calculateGrades() {
             const isActive = isPassMode ? true : isTaskChecked;
 
             const input = document.querySelector(`input[type="number"][data-module-index="${moduleIndex}"][data-task-index="${taskIndex}"]`);
-            
-            // UI logic (Supports Autofill state) - ONLY ONE 'row' DECLARATION
             const row = input ? input.closest('.task-row') : null;
             const rangeInput = document.querySelector(`input[type="range"][data-module-index="${moduleIndex}"][data-task-index="${taskIndex}"]`);
             const isAutofilled = row ? row.classList.contains('autofilled-row') : false;
 
+            // UI Logic
             if (isTaskChecked && isModChecked) {
-                // Completely completed task: Reset to standard active state
                 if(row) { row.style.opacity = "1"; row.classList.remove('autofilled-row'); }
                 if(input) { input.disabled = false; input.classList.remove('autofilled-input'); }
                 if(rangeInput) { rangeInput.disabled = false; rangeInput.classList.remove('autofilled-slider'); }
             } else {
-                // Unchecked task
                 if (isAutofilled) {
-                    // Keep them active and visible because they are in See-Saw mode
                     if(row) row.style.opacity = "1";
                     if(input) input.disabled = false;
                     if(rangeInput) rangeInput.disabled = false;
                 } else {
-                    // Standard unchecked behavior (dimmed and locked)
                     if(row) row.style.opacity = "0.4";
                     if(input) input.disabled = true;
                     if(rangeInput) rangeInput.disabled = true;
                 }
             }
 
-            // Standard Average Math
+            // Math Logic
             if (isActive) {
                 let val = 0;
                 if (isTaskChecked && isModChecked && input && input.value !== "") {
-                    // Pull real value if checked
                     val = parseFloat(input.value);
                 } else if (isPassMode && (!isTaskChecked || !isModChecked)) {
-                    // Inject 40% passing grade for unchecked tasks
                     val = task.maxScore * 0.40;
                 }
 
@@ -354,7 +317,6 @@ function calculateGrades() {
                 }
             }
 
-            // Target Predictor Math (Counts genuinely achieved points only)
             if (isTaskChecked && isModChecked && input && input.value !== "") {
                 let val = parseFloat(input.value);
                 if (!isNaN(val)) absoluteModuleScore += (val / task.maxScore) * task.weight * 100;
@@ -362,10 +324,8 @@ function calculateGrades() {
         });
 
         let finalModuleGrade = 0;
-        if (currentModuleMaxWeight > 0) {
-            finalModuleGrade = Math.min(100, currentModuleScore / currentModuleMaxWeight);
-        }
-
+        if (currentModuleMaxWeight > 0) finalModuleGrade = Math.min(100, currentModuleScore / currentModuleMaxWeight);
+        
         absolutePointsAchieved += (absoluteModuleScore * module.credits);
 
         const gradeBadge = document.getElementById(`grade-${moduleIndex}`);
@@ -388,8 +348,6 @@ function calculateGrades() {
     const yearAvgEl = document.getElementById('year-average');
     let degreeClass = finalAverage >= 70 ? "(1st)" : finalAverage >= 60 ? "(2:1)" : finalAverage >= 50 ? "(2:2)" : finalAverage >= 40 ? "(3rd)" : "(Fail)";
     yearAvgEl.textContent = `${finalAverage.toFixed(2)}% ${degreeClass}`;
-
-    // Highlight the average green if pass mode is on
     yearAvgEl.style.color = isPassMode ? "var(--success-green)" : "#fff";
 
     document.querySelectorAll('.markband-cell').forEach(el => el.classList.remove('active'));
@@ -398,19 +356,15 @@ function calculateGrades() {
     else if (finalAverage >= 50) document.getElementById('band-22').classList.add('active');
     else if (finalAverage >= 40) document.getElementById('band-3rd').classList.add('active');
 
-    if (typeof updateTargetPredictor === 'function') {
-        updateTargetPredictor(absolutePointsAchieved, totalCourseCredits, modules);
-    }
-
+    if (typeof updateTargetPredictor === 'function') updateTargetPredictor(absolutePointsAchieved, totalCourseCredits, modules);
+    if (typeof updateTrajectoryGraph === 'function') updateTrajectoryGraph(modules);
     if (typeof saveCourseState === 'function') saveCourseState();
 }
 
-// --- TARGET PREDICTOR & SEE-SAW LOGIC ---
-
+// --- 7. TARGET PREDICTOR & SEE-SAW LOGIC ---
 function handleTargetChange() {
     const targetStr = document.getElementById('target-degree')?.value || "none";
     if (targetStr === "none") {
-        // Strip all purple classes if target is removed
         document.querySelectorAll('.autofilled-row').forEach(el => el.classList.remove('autofilled-row'));
         document.querySelectorAll('.autofilled-input').forEach(el => el.classList.remove('autofilled-input'));
         document.querySelectorAll('.autofilled-slider').forEach(el => el.classList.remove('autofilled-slider'));
@@ -424,15 +378,11 @@ function syncInputs(el, targetType) {
     const target = document.querySelector(`input[type="${targetType}"][data-module-index="${modIdx}"][data-task-index="${taskIdx}"]`);
     if (target) target.value = el.value;
 
-    // SEE-SAW LOGIC: If a user drags an autofilled slider, balance the others!
     const targetStr = document.getElementById('target-degree')?.value || "none";
     const row = el.closest('.task-row');
     const isAutofilled = row ? row.classList.contains('autofilled-row') : false;
 
-    if (isAutofilled && targetStr !== "none") {
-        balanceUnchecked(modIdx, taskIdx);
-    }
-
+    if (isAutofilled && targetStr !== "none") balanceUnchecked(modIdx, taskIdx);
     calculateGrades();
 }
 
@@ -461,14 +411,11 @@ function updateTargetPredictor(absolutePointsAchieved, totalCourseCredits, modul
         module.tasks.forEach((task, taskIndex) => {
             const taskCheckbox = document.querySelector(`.task-checkbox[data-module-index="${moduleIndex}"][data-task-index="${taskIndex}"]`);
             const isTaskChecked = taskCheckbox ? taskCheckbox.checked : true;
-
-            if (!isModChecked || !isTaskChecked) {
-                remainingMaxPoints += (task.weight * 100) * module.credits;
-            }
+            if (!isModChecked || !isTaskChecked) remainingMaxPoints += (task.weight * 100) * module.credits;
         });
     });
 
-    autofillContainer.style.display = "none"; // Hide button by default
+    autofillContainer.style.display = "none"; 
 
     if (pointsNeeded <= 0) {
         targetText.innerHTML = `🎉 You have already secured enough marks to guarantee a ${targetOverallAvg}%!`;
@@ -484,8 +431,6 @@ function updateTargetPredictor(absolutePointsAchieved, totalCourseCredits, modul
         } else {
             targetText.innerHTML = `🎯 You need to average <strong>${requiredAvg.toFixed(1)}%</strong> on your remaining assignments.`;
             targetText.style.color = "inherit";
-            
-            // Show auto-fill button and attach the exact required percentage
             autofillContainer.style.display = "block";
             autofillBtn.onclick = () => autoFillGrades(requiredAvg, modules);
         }
@@ -512,19 +457,9 @@ function autoFillGrades(requiredAvgPercentage, modules) {
                 if (numInput) numInput.value = requiredScore;
                 if (rangeInput) rangeInput.value = requiredScore;
 
-                // Add Purple Styling and Unlock
-                if (row) {
-                    row.classList.add('autofilled-row');
-                    row.style.opacity = "1";
-                }
-                if (numInput) {
-                    numInput.classList.add('autofilled-input');
-                    numInput.disabled = false;
-                }
-                if (rangeInput) {
-                    rangeInput.classList.add('autofilled-slider');
-                    rangeInput.disabled = false;
-                }
+                if (row) { row.classList.add('autofilled-row'); row.style.opacity = "1"; }
+                if (numInput) { numInput.classList.add('autofilled-input'); numInput.disabled = false; }
+                if (rangeInput) { rangeInput.classList.add('autofilled-slider'); rangeInput.disabled = false; }
             }
         });
     });
@@ -571,9 +506,7 @@ function balanceUnchecked(exemptModIdx, exemptTaskIdx) {
     const pointsNeededFromOthers = targetTotalPoints - absolutePointsAchieved - exemptPoints;
 
     let requiredAvg = 0;
-    if (remainingMaxPoints > 0) {
-        requiredAvg = (pointsNeededFromOthers / remainingMaxPoints) * 100;
-    }
+    if (remainingMaxPoints > 0) requiredAvg = (pointsNeededFromOthers / remainingMaxPoints) * 100;
 
     modules.forEach((module, moduleIndex) => {
         const modCheckbox = document.querySelector(`.module-checkbox[data-module-index="${moduleIndex}"]`);
@@ -599,24 +532,17 @@ function balanceUnchecked(exemptModIdx, exemptTaskIdx) {
     });
 }
 
-// --- 7. STATE PERSISTENCE (AUTO-SAVE) ---
-
+// --- 8. STATE PERSISTENCE ---
 function saveCourseState() {
     if (!courseData) return;
     const state = { modules: [] };
-    const modules = courseData.year1.modules;
-
-    modules.forEach((module, moduleIndex) => {
+    courseData.year1.modules.forEach((module, moduleIndex) => {
         const modCheckbox = document.querySelector(`.module-checkbox[data-module-index="${moduleIndex}"]`);
-        const modState = {
-            isActive: modCheckbox ? modCheckbox.checked : true,
-            tasks: []
-        };
+        const modState = { isActive: modCheckbox ? modCheckbox.checked : true, tasks: [] };
 
         module.tasks.forEach((task, taskIndex) => {
             const taskCheckbox = document.querySelector(`.task-checkbox[data-module-index="${moduleIndex}"][data-task-index="${taskIndex}"]`);
             const input = document.querySelector(`input[type="number"][data-module-index="${moduleIndex}"][data-task-index="${taskIndex}"]`);
-            
             modState.tasks.push({
                 isActive: taskCheckbox ? taskCheckbox.checked : true,
                 value: input ? parseFloat(input.value) : 0
@@ -625,7 +551,6 @@ function saveCourseState() {
         state.modules.push(modState);
     });
 
-    // Save using the course name as a unique key
     state.passMode = document.getElementById('pass-mode-toggle')?.checked || false;
     state.targetValue = document.getElementById('target-degree')?.value || "none";
     localStorage.setItem('imperial-predict-state-' + courseData.courseName, JSON.stringify(state));
@@ -634,7 +559,7 @@ function saveCourseState() {
 function loadCourseState() {
     if (!courseData) return;
     const savedStateStr = localStorage.getItem('imperial-predict-state-' + courseData.courseName);
-    if (!savedStateStr) return; // No saved data found
+    if (!savedStateStr) return; 
 
     try {
         const state = JSON.parse(savedStateStr);
@@ -656,15 +581,136 @@ function loadCourseState() {
         const targetDropdown = document.getElementById('target-degree');
         if (toggle) toggle.checked = state.passMode || false;
         if (targetDropdown) targetDropdown.value = state.targetValue || "none";
-    } catch (error) {
-        console.error("Could not load saved grades:", error);
-    }
+    } catch (error) { console.error("Could not load saved grades:", error); }
 }
 
 function clearCourseState() {
     if (courseData && confirm("Are you sure you want to reset all your grades for this course? This cannot be undone.")) {
         localStorage.removeItem('imperial-predict-state-' + courseData.courseName);
-        renderApp(); // Re-render the app to reset to defaults
+        renderApp(); 
     }
 }
 
+// --- 9. INSIGHTS & GRAPHING LOGIC ---
+function toggleInsights(moduleIndex) {
+    const panel = document.getElementById(`insights-${moduleIndex}`);
+    if (!panel) return;
+    if (panel.style.display === 'block') {
+        panel.style.display = 'none';
+    } else {
+        panel.style.display = 'block';
+        renderModuleChart(moduleIndex);
+    }
+}
+
+function renderModuleChart(moduleIndex) {
+    const module = courseData.year1.modules[moduleIndex];
+    if (!module || !module.insights || !module.insights.historicalTrend) return;
+    const ctx = document.getElementById(`chart-${moduleIndex}`).getContext('2d');
+    if (chartInstances[moduleIndex]) chartInstances[moduleIndex].destroy();
+
+    const labels = module.insights.historicalTrend.map(d => d.year);
+    const dataPoints = module.insights.historicalTrend.map(d => d.average);
+    const isDarkMode = document.body.getAttribute('data-theme') === 'dark';
+    const textColor = isDarkMode ? '#e0e0e0' : '#333';
+    const gridColor = isDarkMode ? '#333' : '#ddd';
+
+    chartInstances[moduleIndex] = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Historical Average',
+                data: dataPoints,
+                borderColor: '#4a90e2',
+                backgroundColor: 'rgba(74, 144, 226, 0.2)',
+                borderWidth: 2,
+                pointBackgroundColor: '#4a90e2',
+                fill: true,
+                tension: 0.3 
+            }]
+        },
+        options: {
+            responsive: true, maintainAspectRatio: false,
+            scales: {
+                y: { min: 40, max: 100, grid: { color: gridColor }, ticks: { color: textColor } },
+                x: { grid: { color: gridColor }, ticks: { color: textColor } }
+            },
+            plugins: { legend: { display: false } }
+        }
+    });
+}
+
+function updateTrajectoryGraph(modules) {
+    const terms = {"Term 1": {score:0, credits:0}, "Term 2": {score:0, credits:0}, "Term 3": {score:0, credits:0}};
+
+    modules.forEach((module, moduleIndex) => {
+        const modCheckbox = document.querySelector(`.module-checkbox[data-module-index="${moduleIndex}"]`);
+        if(modCheckbox && !modCheckbox.checked) return;
+
+        let modScore = 0; let modWeight = 0;
+        module.tasks.forEach((task, taskIndex) => {
+            const taskCheckbox = document.querySelector(`.task-checkbox[data-module-index="${moduleIndex}"][data-task-index="${taskIndex}"]`);
+            if(taskCheckbox && !taskCheckbox.checked) return;
+
+            const input = document.querySelector(`input[type="number"][data-module-index="${moduleIndex}"][data-task-index="${taskIndex}"]`);
+            if (input && input.value !== "") {
+                modScore += (parseFloat(input.value) / task.maxScore) * task.weight * 100;
+                modWeight += task.weight;
+            }
+        });
+
+        if (modWeight > 0) {
+            let finalModGrade = Math.min(100, modScore / modWeight);
+            if (module.term.includes("Term 1") || module.term === "Full Year") { terms["Term 1"].score += finalModGrade * module.credits; terms["Term 1"].credits += module.credits; }
+            if (module.term.includes("Term 2") || module.term === "Full Year") { terms["Term 2"].score += finalModGrade * module.credits; terms["Term 2"].credits += module.credits; }
+            if (module.term.includes("Term 3") || module.term === "Full Year") { terms["Term 3"].score += finalModGrade * module.credits; terms["Term 3"].credits += module.credits; }
+        }
+    });
+
+    const dataPoints = [
+        terms["Term 1"].credits > 0 ? terms["Term 1"].score / terms["Term 1"].credits : null,
+        terms["Term 2"].credits > 0 ? terms["Term 2"].score / terms["Term 2"].credits : null,
+        terms["Term 3"].credits > 0 ? terms["Term 3"].score / terms["Term 3"].credits : null
+    ];
+
+    const container = document.getElementById('trajectory-container');
+    if (dataPoints.every(d => d === null)) {
+        container.style.display = 'none';
+        return;
+    }
+    
+    container.style.display = 'block';
+    const ctx = document.getElementById('trajectory-chart').getContext('2d');
+    if (window.trajectoryChartInstance) window.trajectoryChartInstance.destroy();
+
+    const isDarkMode = document.body.getAttribute('data-theme') === 'dark';
+    const textColor = isDarkMode ? '#e0e0e0' : '#333';
+    const gridColor = isDarkMode ? '#333' : '#ddd';
+
+    window.trajectoryChartInstance = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['Term 1', 'Term 2', 'Term 3'],
+            datasets: [{
+                label: 'Term Average',
+                data: dataPoints,
+                borderColor: '#2ecc71',
+                backgroundColor: 'rgba(46, 204, 113, 0.2)',
+                borderWidth: 3,
+                pointBackgroundColor: '#2ecc71',
+                fill: true,
+                spanGaps: true,
+                tension: 0.3
+            }]
+        },
+        options: {
+            responsive: true, maintainAspectRatio: false,
+            scales: {
+                y: { min: 40, max: 100, grid: { color: gridColor }, ticks: { color: textColor } },
+                x: { grid: { color: gridColor }, ticks: { color: textColor } }
+            },
+            plugins: { legend: { display: false } }
+        }
+    });
+}

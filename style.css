@@ -326,3 +326,24 @@ h2.term-header { color: var(--imperial-blue); border-bottom: 2px solid var(--bor
     border-color: #9b59b6 !important;
     background-color: #fcf4ff !important; /* Extremely light purple */
 }
+/* Danger Button (Reset) */
+.danger-btn { background-color: transparent; border: 1px solid var(--danger-red); color: var(--danger-red); padding: 6px 14px; border-radius: 6px; font-weight: 600; cursor: pointer; transition: all 0.2s ease; font-size: 0.9em; display: flex; align-items: center; gap: 6px; }
+.danger-btn:hover { background-color: var(--danger-red); color: #fff; box-shadow: 0 4px 8px rgba(231, 76, 60, 0.2); }
+
+/* Action Button (Auto-Fill) */
+.action-btn { background: linear-gradient(135deg, var(--imperial-blue), var(--imperial-light)); border: none; color: white; padding: 8px 16px; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.2s ease; font-size: 0.9em; margin-top: 10px; }
+.action-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px var(--shadow-color); }
+
+/* OPTION C: SEE-SAW & AUTOFILL STYLES */
+.autofilled-row { background-color: rgba(155, 89, 182, 0.05); border-left: 3px solid #9b59b6; transition: all 0.2s ease; }
+.autofilled-slider { accent-color: #9b59b6 !important; }
+.autofilled-input { color: #9b59b6 !important; border-color: #9b59b6 !important; background-color: #fcf4ff !important; }
+
+/* INSIGHTS PANEL */
+.insight-btn { background: rgba(74, 144, 226, 0.1); border: 1px solid var(--imperial-blue); color: var(--imperial-blue); border-radius: 12px; padding: 4px 10px; font-size: 0.8em; font-weight: 600; cursor: pointer; margin-left: 10px; transition: all 0.2s ease; display: flex; align-items: center; gap: 4px; }
+.insight-btn:hover { background: var(--imperial-blue); color: white; transform: translateY(-1px); }
+.insights-panel { background: var(--markband-bg); border-top: 1px solid var(--light-border); padding: 20px; display: none; }
+.insights-panel h4 { margin: 0 0 10px 0; color: var(--imperial-blue); font-size: 0.95em; text-transform: uppercase; letter-spacing: 0.5px; }
+.feedback-list { margin: 0 0 20px 0; padding-left: 20px; font-size: 0.9em; color: var(--text-color); line-height: 1.5; }
+.feedback-list li { margin-bottom: 6px; }
+.chart-container { position: relative; height: 200px; width: 100%; }
